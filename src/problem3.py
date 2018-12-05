@@ -104,6 +104,20 @@ def run_test_problem3a():
     # your choice), add 1 more test case of your own choosing.
     # -------------------------------------------------------------------------
 
+    #Test 5 (its on window 4):
+    title = 'Problem 3a. Test 5: Start at (10, 10), 10 lines'
+    window4 = rg.RoseWindow(300, 300, title)
+
+    point = rg.Point(10, 10)
+    expected = 88
+    answer = problem3a(window4, point, 10)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    window4.close_on_mouse_click()
+
+
 
 def problem3a(window, point, n):
     """
@@ -138,7 +152,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -146,6 +160,25 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # -------------------------------------------------------------------------
+
+    lx = point.x
+    ly = point.y
+
+    total = 0
+    thickness = 1
+    for k in range(n):
+        line = rg.Line(rg.Point(lx + (20 * k), ly + (10 * k)), rg.Point(lx + (20 * k), (ly + 50) + (10 * k)))
+        if 1 + (2 * k) <= 11:
+            line.thickness = thickness + (2 * k)
+            total = total + line.thickness
+        else:
+            line.thickness = 13
+            total = total + 13
+        line.attach_to(window)
+
+    window.render()
+    return total
+
 
 
 def run_test_problem3b():
